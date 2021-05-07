@@ -16,7 +16,7 @@ const App = () => {
         <Container>
           <Route path='/' component={HomeScreen} exact />
           <Route path='/profile' component={Users} />
-          <Route path='/youraccount/:id' component={YourAccount} />
+          <Route path='/youraccount' component={YourAccount} />
         </Container>
 
       </main>

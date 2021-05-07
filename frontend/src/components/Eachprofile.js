@@ -1,12 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Card } from 'react-bootstrap'
 
 const Eachprofile = ({ profile }) => {
   return (
     <Card className='my-3 p-3 rounded'>
-      {/* <a href={`/dataprofile/${profile._id}`}> */}
       <Card.Img src={profile.image} variant='top' />
-      {/* </a> */}
 
       <Card.Body>
         <Card.Title as='div'>
@@ -18,7 +17,7 @@ const Eachprofile = ({ profile }) => {
         </Card.Text>
 
         <Card.Link as='div'>
-          <a href={`/dataprofile/${profile._id}`}>
+          <Link to={`/dataprofile/${profile._id}`}>
             <Button className='callbutton'>
               <img
                 className='videoicon'
@@ -26,13 +25,13 @@ const Eachprofile = ({ profile }) => {
                 src='chatting.png'
               ></img>
             </Button>
-          </a>
+          </Link>
 
-          <a href={`/dataprofile/${profile._id}`}>
+          <Link to={`/dataprofile/${profile._id}`}>
             <Button className='callbutton'>
               <img className='videoicon' alt='camera' src='camera.png'></img>{' '}
             </Button>
-          </a>
+          </Link>
         </Card.Link>
       </Card.Body>
     </Card>
