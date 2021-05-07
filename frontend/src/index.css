@@ -34,6 +34,13 @@ main {
   align-items: center;
 }
 
+.videoicon {
+  width: 50px;
+}
+
+.callbutton {
+  background-color: transparent;
+}
 
 /* .footer {
   width: 100%;
