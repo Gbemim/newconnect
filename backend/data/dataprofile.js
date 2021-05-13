@@ -21,4 +21,4 @@ const dataprofiles = [
   },
 ]
 
-module.exports = dataprofiles
+export default dataprofiles
