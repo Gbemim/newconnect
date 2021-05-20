@@ -6,7 +6,8 @@ import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 import userRoutes from './routes/userRoutes.js'
-import { EINPROGRESS } from 'constants'
+import oneUserRoutes from './routes/oneUserRoutes.js'
+
 
 
 dotenv.config()
@@ -15,9 +16,7 @@ connectDB()
 
 const app = express()
 
-// app.get('/', (req, res) => {
-//     res.send('The API is running...')
-// })
+app.use(express.json())
 
 const __dirname = path.resolve()
 if(process.env.NODE_ENV === 'production'){
@@ -31,6 +30,8 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 app.use('/api/profile', userRoutes)
+app.use('/api/users', oneUserRoutes)
+
 
 app.use(notFound)
 
