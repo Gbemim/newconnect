@@ -4,7 +4,7 @@ const dataprofiles = [
     name: 'Gbemi',
     email: 'gbemi@mail.com',
     image: 'images/img1.jpg',
-    about: 'This is a test run',
+    about: 'This is a test run1',
     password: bcrypt.hashSync('abc1234', 10),
     isBusy: false,
     isAdmin: true,
