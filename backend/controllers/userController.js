@@ -7,7 +7,8 @@ import User from '../models/userModel.js'
 // @access  Private
 const getUsers = asyncHandler(async(req, res) => {
     const users = await User.find({})
-
+    // res.status(401)
+    // throw new Error('Not Authorized')
     res.json(users)
 })
 
@@ -22,7 +23,8 @@ const getUsersById = asyncHandler(async(req, res) => {
     if(profile){
         res.json(profile)
     } else {
-        res.status(404).json({message: 'Profile not found'})
+        res.status(404)
+        throw new Error('Product not found')
     }
 })
 
