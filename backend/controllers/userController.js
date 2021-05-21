@@ -3,19 +3,19 @@ import User from '../models/userModel.js'
 
 
 // @desc    Fetch all profiles
-// @route   GET /api/profile
+// @route   GET /api/liveusers
 // @access  Private
-const getUsers = asyncHandler(async(req, res) => {
-    const users = await User.find({})
+const getLiveUsers = asyncHandler(async(req, res) => {
+    const liveUsers = await User.find({})
     // res.status(401)
     // throw new Error('Not Authorized')
-    res.json(users)
+    res.json(liveUsers)
 })
 
 
 
 // @desc    Fetch individual profile
-// @route   GET /api/profile:id
+// @route   GET /api/users:id
 // @access  Private
 const getUsersById = asyncHandler(async(req, res) => {
     const profile = await User.findById(req.params.id)
@@ -29,6 +29,6 @@ const getUsersById = asyncHandler(async(req, res) => {
 })
 
 export {
-    getUsers,
+    getLiveUsers,
     getUsersById
 }

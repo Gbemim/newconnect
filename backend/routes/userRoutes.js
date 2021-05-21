@@ -1,9 +1,9 @@
 import express from 'express'
 const router = express.Router()
-import {getUsers, getUsersById } from '../controllers/userController.js'
+import { getLiveUsers, getUsersById } from '../controllers/userController.js'
 
 
-router.route('/').get(getUsers)
+router.route('/').get(getLiveUsers)
 router.route('/:id').get(getUsersById)
 
 

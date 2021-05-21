@@ -8,17 +8,18 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    image: {
-        type: String,
-        required: true
-    },
-  
-    about: {
-        type: String,
-        required: true
-    },
+    // image: {
+    //     type: String,
+    //     required: true
+    // },
+   
+    // about: {
+    //     type: String,
+    //     required: true
+    // },
     password: {
         type: String,
         required: true
@@ -36,6 +37,14 @@ const userSchema = mongoose.Schema({
 userSchema.methods.matchPassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password)
 }
+
+userSchema.pre('save', async function (next){
+    if(!this.isModified('password')){
+        next()
+    }
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt)
+})
 
 const User = mongoose.model('user', userSchema)
 
