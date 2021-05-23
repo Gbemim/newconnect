@@ -6,6 +6,7 @@ import Loader from '../components/Loader.js'
 import Eachprofile from '../components/Eachprofile'
 import { listUsers } from '../actions/userActions.js'
 
+
 const Users = () => {
     const dispatch = useDispatch()
 
@@ -17,6 +18,7 @@ const Users = () => {
     }, [dispatch])
 
     return (
+        
         <>
         <h1>Live Users</h1>
         { loading ? (
