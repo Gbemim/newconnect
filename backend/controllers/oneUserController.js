@@ -59,7 +59,7 @@ const registerUser = asyncHandler(async(req, res) => {
 
 
 // @desc    Get individual user profile
-// @route   GET /api/users/profile
+// @route   GET /api/users/account
 // @access  Private
 const getAccount = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id)
@@ -80,6 +80,35 @@ const getAccount = asyncHandler(async(req, res) => {
 })
 
 
+// @desc    Update individual user profile
+// @route   PUT /api/users/account
+// @access  Private
+const updateAccount = asyncHandler(async(req, res) => {
+    const user = await User.findById(req.user._id)
+
+    if(user){
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+        if(req.body.password) {
+            user.password = req.body.password
+        }
+        const updatedUserAccount = await user.save()
+
+        res.json({
+            _id:updatedUserAccount._id,
+            name: updatedUserAccount.name,
+            email: updatedUserAccount.email,
+            isAdmin: updatedUserAccount.isAdmin,
+        })
+    } else {
+        res.status(404)
+        throw new Error('User not Found')
+    }
+
+    res.send('Success')
+})
+
+
 export {
-    authUser, getAccount, registerUser
+    authUser, getAccount, registerUser, updateAccount
 }
