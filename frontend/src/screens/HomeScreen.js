@@ -9,13 +9,13 @@ const HomeScreen = () => {
             call with another Linkedin user
           </p>
           {/* <Link href="/profile"> */}
-          <a
+          {/* <a
             href='https://www.linkedin.com/oauth/v2/authorization?response_type=code&scope=r_liteprofile&client_id=78tkd2wwr2p92m&redirect_uri=https%3A%2F%2Fwww.netconnect.online%2Fprofile'
             // onClick={tesst}
             className='card'
           >
             <h3>Login & Signup &rarr;</h3>
-          </a>
+          </a> */}
         </>
     )
 }

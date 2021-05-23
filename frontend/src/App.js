@@ -6,6 +6,7 @@ import { Container } from 'react-bootstrap'
 import Users from './screens/Users.js'
 import HomeScreen from './screens/HomeScreen'
 import YourAccount from './screens/YourAccount'
+import LoginScreen from './screens/LoginScreen'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <main>
         <Container>
           <Route path='/' component={HomeScreen} exact />
+          <Route path='/login' component={LoginScreen} />
           <Route path='/liveUsers' component={Users} />
           <Route path='/youraccount' component={YourAccount} />
         </Container>
