@@ -9,6 +9,7 @@ import { USER_UPDATE_ACCOUNT_RESET } from '../constants/userLoginConstants'
 const YourAccountScreen = ({ location, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [about, setAbout] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
@@ -43,7 +44,7 @@ const YourAccountScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(updateUserAccount({ id: user._id, name, email, password}))
+      dispatch(updateUserAccount({ id: user._id, name, about, email, password}))
     }
   }
 
@@ -73,6 +74,16 @@ const YourAccountScreen = ({ location, history }) => {
               placeholder='Enter email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId='about'>
+            <Form.Label>About Me</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='About Yourself'
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
             ></Form.Control>
           </Form.Group>
 

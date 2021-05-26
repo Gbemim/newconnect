@@ -88,6 +88,7 @@ const updateAccount = asyncHandler(async(req, res) => {
 
     if(user){
         user.name = req.body.name || user.name
+        user.about = req.body.about || user.about
         user.email = req.body.email || user.email
         if(req.body.password) {
             user.password = req.body.password
@@ -97,6 +98,7 @@ const updateAccount = asyncHandler(async(req, res) => {
         res.json({
             _id:updatedUserAccount._id,
             name: updatedUserAccount.name,
+            about: updatedUserAccount.about,
             email: updatedUserAccount.email,
             isAdmin: updatedUserAccount.isAdmin,
         })
