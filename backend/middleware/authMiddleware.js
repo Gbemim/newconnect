@@ -28,4 +28,13 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 })
 
-export { protect }
+const isUser = (req, res, next) => {
+  if(req.user){
+    next()
+  } else {
+    res.status(401) 
+    throw new Error('Not authorized')
+  }
+}
+
+export { protect, isUser }

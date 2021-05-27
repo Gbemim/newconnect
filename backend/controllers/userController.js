@@ -24,7 +24,7 @@ const getUsersById = asyncHandler(async(req, res) => {
         res.json(profile)
     } else {
         res.status(404)
-        throw new Error('Product not found')
+        throw new Error('User not found')
     }
 })
 

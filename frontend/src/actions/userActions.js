@@ -5,10 +5,22 @@ import {
 } from '../constants/userConstants.js'
 import axios from 'axios'
 
-export const listUsers = () => async (dispatch) => {
+
+export const listUsers = () => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_LIST_REQUEST })
-    const { data } = await axios.get('/api/profile')
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+    
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    }
+
+    const { data } = await axios.get('/api/liveusers', config)
 
     dispatch({
       type: USER_LIST_SUCCESS,
