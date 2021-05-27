@@ -14,7 +14,10 @@ const Users = () => {
     const {loading, error, users} = userList
 
     useEffect(() => {
-       dispatch(listUsers())
+        // if(userInfo && userInfo.isLive) {
+            dispatch(listUsers())
+
+        // }
     }, [dispatch])
 
     return (

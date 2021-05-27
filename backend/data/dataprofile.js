@@ -6,8 +6,7 @@ const dataprofiles = [
     image: 'images/img1.jpg',
     about: 'This is a test run1',
     password: bcrypt.hashSync('abc1234', 10),
-    isBusy: false,
-    isAdmin: true,
+    isLive: false,
   },
 
   {
@@ -15,7 +14,7 @@ const dataprofiles = [
     email: 'mary@mail.com',
     image: 'images/img2.jpg',
     about: 'This is a test run2',
-    isBusy: false,
+    isLive: false,
     password: bcrypt.hashSync('abc1234', 10),
   },
 
@@ -24,7 +23,7 @@ const dataprofiles = [
     email: 'lisa@mail.com',
     image: 'images/img3.jpg',
     about: 'This is a test run3',
-    isBusy: false,
+    isLive: false,
     password: bcrypt.hashSync('abc1234', 10),
   },
 ]

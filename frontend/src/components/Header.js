@@ -40,13 +40,14 @@ const Header = () => {
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>}
 
-            {userInfo ? (
+            {userInfo && userInfo.isLive && (
             <LinkContainer to='/liveUsers'>
               <Nav.Link>Live Users</Nav.Link>
             </LinkContainer>
-            ): <LinkContainer to='/login'>
-            <Nav.Link>Live Users</Nav.Link>
-          </LinkContainer>}
+            )}
+          {/* //   ): <LinkContainer to='/login'>
+          //   <Nav.Link>Live Users</Nav.Link>
+          // </LinkContainer>} */}
             
             
 

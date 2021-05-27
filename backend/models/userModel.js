@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    isAdmin: {
+    isLive: {
         type: Boolean,
         required: true,
         default: false

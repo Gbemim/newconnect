@@ -15,7 +15,7 @@ const authUser = asyncHandler(async(req, res) => {
             _id:user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
+            isLive: user.isLive,
             token: generateToken(user._id),
         })
     } else {
@@ -48,7 +48,7 @@ const registerUser = asyncHandler(async(req, res) => {
             id:user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
+            isLive: user.isLive,
             token: generateToken(user._id)
         })
    }else{
@@ -69,7 +69,7 @@ const getAccount = asyncHandler(async(req, res) => {
             _id:user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
+            isLive: user.isLive,
         })
     } else {
         res.status(404)
@@ -100,7 +100,7 @@ const updateAccount = asyncHandler(async(req, res) => {
             name: updatedUserAccount.name,
             about: updatedUserAccount.about,
             email: updatedUserAccount.email,
-            isAdmin: updatedUserAccount.isAdmin,
+            isLive: updatedUserAccount.isLive,
         })
     } else {
         res.status(404)
