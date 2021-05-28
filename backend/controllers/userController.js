@@ -3,13 +3,22 @@ import User from '../models/userModel.js'
 
 
 // @desc    Fetch all profiles
-// @route   GET /api/liveusers
+// @route   GET /api/users/liveusers
 // @access  Private
 const getLiveUsers = asyncHandler(async(req, res) => {
-    const liveUsers = await User.find({})
-    // res.status(401)
-    // throw new Error('Not Authorized')
-    res.json(liveUsers)
+    const theLiveUser = await User.find({ isLive: true })
+    const users = await User.find({})
+
+    if(theLiveUser) {
+        res.json(theLiveUser)
+ 
+    }else if(users && !theLiveUser) {
+        res.status(204)
+       throw new ErrorEvent('No users are online')
+    }else {
+        res.status(401)
+        throw new Error('Not Authorized')
+    }
 })
 
 

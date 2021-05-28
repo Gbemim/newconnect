@@ -5,7 +5,7 @@ import path from 'path'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
-import userRoutes from './routes/userRoutes.js'
+// import userRoutes from './routes/userRoutes.js'
 import oneUserRoutes from './routes/oneUserRoutes.js'
 
 
@@ -29,7 +29,7 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
-app.use('/api/liveusers', userRoutes)
+// app.use('/api/liveusers', userRoutes)
 app.use('/api/users', oneUserRoutes)
 
 

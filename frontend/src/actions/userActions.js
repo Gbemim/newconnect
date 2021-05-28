@@ -20,7 +20,7 @@ export const listUsers = () => async (dispatch, getState) => {
       }
     }
 
-    const { data } = await axios.get('/api/liveusers', config)
+    const { data } = await axios.get('/api/users/liveusers', config)
 
     dispatch({
       type: USER_LIST_SUCCESS,

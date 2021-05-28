@@ -10,12 +10,15 @@ const authUser = asyncHandler(async(req, res) => {
     const {email, password } = req.body
     const user = await User.findOne({ email })
 
-    if(user && (await user.matchPassword(password))){
+    if(user && (await user.matchPassword(password))){  
+        user.isLive = true
+        const updateIsLiveStatus = await user.save()
+
         res.json({
             _id:user._id,
             name: user.name,
             email: user.email,
-            isLive: user.isLive,
+            isLive: updateIsLiveStatus.isLive,
             token: generateToken(user._id),
         })
     } else {
@@ -44,11 +47,14 @@ const registerUser = asyncHandler(async(req, res) => {
    })
 
    if(user){
+        user.isLive = true
+        const updateIsLiveStatus = await user.save()  
+
         res.status(201).json({
             id:user._id,
             name: user.name,
             email: user.email,
-            isLive: user.isLive,
+            isLive: updateIsLiveStatus.isLive,
             token: generateToken(user._id)
         })
    }else{
@@ -65,6 +71,7 @@ const getAccount = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id)
 
     if(user){
+        // user.isLive = true  
         res.json({
             _id:user._id,
             name: user.name,
@@ -100,7 +107,6 @@ const updateAccount = asyncHandler(async(req, res) => {
             name: updatedUserAccount.name,
             about: updatedUserAccount.about,
             email: updatedUserAccount.email,
-            isLive: updatedUserAccount.isLive,
         })
     } else {
         res.status(404)

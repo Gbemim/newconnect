@@ -5,8 +5,8 @@ const dataprofiles = [
     email: 'gbemi@mail.com',
     image: 'images/img1.jpg',
     about: 'This is a test run1',
-    password: bcrypt.hashSync('abc1234', 10),
     isLive: false,
+    password: bcrypt.hashSync('abc1234', 10),
   },
 
   {
