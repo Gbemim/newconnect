@@ -6,38 +6,41 @@ import Loader from '../components/Loader.js'
 import Eachprofile from '../components/Eachprofile'
 import { listUsers } from '../actions/userActions.js'
 
+const Users = ({ history }) => {
+  const dispatch = useDispatch()
 
-const Users = () => {
-    const dispatch = useDispatch()
+  const userList = useSelector((state) => state.userList)
+  const { loading, error, users } = userList
 
-    const userList = useSelector(state => state.userList)
-    const {loading, error, users} = userList
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-    useEffect(() => {
-        // if(userInfo && userInfo.isLive) {
-            dispatch(listUsers())
+  useEffect(() => {
+    if (userInfo && userInfo.isLive) {
+      dispatch(listUsers())
+    } else {
+      history.push('/login')
+    }
+  }, [dispatch, history, userInfo])
 
-        // }
-    }, [dispatch])
-
-    return (
-        
-        <>
-        <h1>Live Users</h1>
-        { loading ? (
-            <Loader/>
-        ) : error ? (<Message variant='danger'>{error}</Message>)
-         : 
-        (<Row>
-            {users.map(profile => (
-                <Col sm={12} md={6} lg={4} xl={3}>
-                   <Eachprofile profile={profile} />
-                </Col>
-            ))}
-        </Row>)}
-        
+  return (
+      <>
+      <h1>Live Users</h1>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <Row>
+          {users.map((profile) => (
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <Eachprofile profile={profile} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </>
-    )
+  )
 }
 
 export default Users
