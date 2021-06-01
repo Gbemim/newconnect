@@ -4,15 +4,13 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userLoginActions'
 
-// import dataprofiles from '../dataprofile'
-
-const Header = ({ history, match }) => {
+const Header = () => {
   const [isLive, setIsLive] = useState(true)
 
   const dispatch = useDispatch()
 
   const userDetails = useSelector((state) => state.userDetails)
-  const { loading, error, user } = userDetails
+  const { user } = userDetails
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -21,22 +19,16 @@ const Header = ({ history, match }) => {
   const { success } = userUpdateAccount
 
   useEffect(() => {
-    if (!userInfo) {      
-      // history.push('/login')
-
+    if (!user || !user.name || success) {
+      user.isLive = false
     } else {
-      if (!user || !user.name || success) {
-        user.isLive = false
-      } else {
-        setIsLive(user.isLive)
-      }
+      setIsLive(user.isLive)
     }
-  }, [dispatch, history, userInfo, user, success])
+  }, [dispatch, userInfo, user, success])
 
   const logoutHandler = () => {
-    user.isLive = false
-    setIsLive(user.isLive)
     dispatch(logout({ id: user._id, isLive }))
+    // if(!user.isLive) window.open('/login')
   }
 
   return (
@@ -69,13 +61,6 @@ const Header = ({ history, match }) => {
                 <Nav.Link>Live Users</Nav.Link>
               </LinkContainer>
             )}
-            {/* //   ): <LinkContainer to='/login'>
-          //   <Nav.Link>Live Users</Nav.Link>
-          // </LinkContainer>} */}
-
-            {/* <LinkContainer to='/youraccount'>
-              <Nav.Link>Account</Nav.Link>
-            </LinkContainer> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
