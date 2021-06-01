@@ -7,7 +7,7 @@ import generateToken from '../utils/generateToken.js'
 // @route   POST /api/users/login
 // @access  Public
 const authUser = asyncHandler(async(req, res) => {
-    const {email, password } = req.body
+    const { email, password } = req.body
     const user = await User.findOne({ email })
 
     if(user && (await user.matchPassword(password))){  
@@ -25,6 +25,29 @@ const authUser = asyncHandler(async(req, res) => {
         res.status(401)
         throw new Error('Invalid email or password')
     }
+})
+
+// @desc    update isLive to false when they logout
+// @route   PUT /api/users/logout
+// @access  Private
+const logoutUser = asyncHandler(async(req, res) => { 
+    const user = await User.findById(req.user._id)
+
+    if(user) {
+         user.isLive = false
+        const updateIsLiveStatus = await user.save()
+        res.json({
+            _id:user._id,
+            name: user.name,
+            email: user.email,
+            isLive: updateIsLiveStatus.isLive,
+            token: generateToken(user._id),
+        })
+    } else {
+        res.status(401)
+        throw new Error('Invalid command')
+    }
+   
 })
 
 
@@ -118,5 +141,5 @@ const updateAccount = asyncHandler(async(req, res) => {
 
 
 export {
-    authUser, getAccount, registerUser, updateAccount
+    authUser, getAccount, registerUser, updateAccount, logoutUser
 }
