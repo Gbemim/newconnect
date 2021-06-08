@@ -8,7 +8,7 @@ import HomeScreen from './screens/HomeScreen'
 import YourAccountScreen from './screens/YourAccountScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
-
+import Room from './screens/Room'
 
 const App = () => {
   return (
@@ -22,6 +22,7 @@ const App = () => {
           <Route path='/login' component={LoginScreen} />
           <Route path='/liveUsers' component={Users} />
           <Route path='/youraccount' component={YourAccountScreen} />
+          <Route path='/room' component={Room} />
         </Container>
 
       </main>
