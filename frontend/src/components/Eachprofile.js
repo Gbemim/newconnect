@@ -4,30 +4,30 @@ import { Button, Card, OverlayTrigger, Popover, Form } from 'react-bootstrap'
 
 const Eachprofile = ({ profile }) => {
   const [roomName, setRoomName] = useState('')
-  const [token, setToken] = useState(null)
+  // const [token, setToken] = useState(null)
 
   const handleRoomNameChange = useCallback(event => {
     setRoomName(event.target.value);
   }, [])
 
-  const handleSubmit = useCallback(async event => {
-    event.preventDefault();
-    const data = await fetch('/video/token', {
-      method: 'POST',
-      body: JSON.stringify({
-        identity: profile.name,
-        room: roomName
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json());
-    setToken(data.token);
-  }, [profile.name, roomName]);
+  // const handleSubmit = useCallback(async event => {
+  //   event.preventDefault();
+  //   const data = await fetch('/video/token', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       identity: profile.name,
+  //       room: roomName
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   }).then(res => res.json());
+  //   // setToken(data.token);
+  // }, [profile.name, roomName]);
 
-  const handleLogout = useCallback(event => {
-    setToken(null);
-  }, []);
+  // const handleLogout = useCallback(event => {
+  //   setToken(null);
+  // }, []);
 
 
   return (
@@ -64,8 +64,8 @@ const Eachprofile = ({ profile }) => {
                     Verify Video Call With: {profile.name}
                   </Popover.Title>
                   <Popover.Content as="h6">
-                    
-                    <Form onSubmit={handleSubmit}>             
+                    {/* onSubmit={handleSubmit} */}
+                    <Form>             
                       <Form.Group>
                         <Form.Label htmlFor="room">Room name:</Form.Label>
                         <Form.Control
