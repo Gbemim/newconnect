@@ -12,7 +12,7 @@ const Room = ({ roomName, token, handleLogout }) => {
     
       return (
         <>
-          35hn<h2>Room: {roomName}</h2>
+          <h2>Room: {roomName}</h2>
           <button onClick={handleLogout}>Log out</button>
           <div className="local-participant">
             {room ? (
